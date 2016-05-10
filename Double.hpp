@@ -1,15 +1,15 @@
-#ifndef INT8_H_
-# define INT8_H_
+#ifndef DOUBLE_H_
+# define DOUBLE_H_
 
 #include "IOperand.hpp"
 #include "VM.hpp"
 
 
 
-class Int8: public IOperand {
+class Double: public IOperand {
 	public:
-		Int8(std::string const &  value);
-		~Int8() {}
+		Double(std::string const &  value);
+		~Double() {}
 		IOperand const * operator+(IOperand const & rhs) const ; 
 		IOperand const * operator-(IOperand const & rhs)const ;
 		IOperand const * operator*(IOperand const & rhs)const ;
