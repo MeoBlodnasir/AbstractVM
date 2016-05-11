@@ -11,8 +11,12 @@
 int main() {
 	try {
 	Factory *f = new Factory();
-	Double *i = (Double *)f->createOperand(DOUBLE, "1.0e9999999");
-	std::cout << i->getType() << std::endl;
+	Int8 *i = (Int8 *)f->createOperand(INT8, "3");
+	Int8 *v = (Int8 *)f->createOperand(INT8, "4");
+	Int8 *res = (Int8 *)(*i + *v);
+	std::cout << i->getValue() << std::endl;
+	std::cout << v->getValue() << std::endl;
+	std::cout << res->getValue() << std::endl;
 	}
 	catch(Exception const &error) {
 			std::cerr << "Error : " << error.what() << std::endl;
