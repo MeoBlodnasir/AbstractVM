@@ -1,7 +1,17 @@
 #include "Float.hpp"
 #include <iostream>
+#include <cfloat>
+#include "Exception.hpp"
 
-Float::Float(std::string const & value) {}
+Float::Float(std::string const & value) {
+	long double val;
+	val = std::stold(value, NULL);
+	if (val > FLT_MAX) {
+		throw (Exception("Overflow on creation of Float\n"));
+	} else if ( val < FLT_MIN) {
+		throw (Exception("Underflow on creation of Float\n"));
+	}
+}
 
 IOperand const * Float::operator+(IOperand const & rhs) const {
 	return NULL;
@@ -36,4 +46,8 @@ eOperandType	Float::getType(void) const {
 std::string const & Float::toString(void) const {
 	std::string *s = new std::string("foo");
 	return (*s);
+}
+
+long double Float::getValue(void) const {
+	return this->_value;
 }

@@ -2,7 +2,6 @@
 # define INT8_H_
 
 #include "IOperand.hpp"
-#include "VM.hpp"
 
 
 
@@ -18,6 +17,9 @@ class Int8: public IOperand {
 		int 		getPrecision(void) const ;
 		eOperandType	getType(void) const ;
 		std::string const & toString(void) const;
+		long double getValue(void) const;
+	private:
+		long double _value;
 };
 
 #endif

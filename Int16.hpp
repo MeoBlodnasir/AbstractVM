@@ -2,7 +2,7 @@
 # define INT16_H_
 
 #include "IOperand.hpp"
-#include "VM.hpp"
+#include "Factory.hpp"
 
 
 
@@ -18,6 +18,9 @@ class Int16: public IOperand {
 		int 		getPrecision(void) const ;
 		eOperandType	getType(void) const ;
 		std::string const & toString(void) const;
+		long double getValue(void) const;
+	private:
+		long double _value;
 };
 
 #endif

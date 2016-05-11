@@ -14,19 +14,21 @@ enum                    eOperandType
 
 class IOperand {
 	public:
-	virtual int 		getPrecision(void) const = 0;
-	virtual eOperandType	getType(void) const = 0;
-	IOperand const * createOperand(eOperandType type, std::string const value) const;
+		virtual int 		getPrecision(void) const = 0;
+		virtual eOperandType	getType(void) const = 0;
 
-	virtual IOperand const * operator+(IOperand const & rhs) const = 0;
-	virtual IOperand const * operator-(IOperand const & rhs) const = 0;
-	virtual IOperand const * operator*(IOperand const & rhs) const = 0;
-	virtual IOperand const * operator/(IOperand const & rhs) const = 0;
-	virtual IOperand const * operator%(IOperand const & rhs) const = 0;
+		virtual IOperand const * operator+(IOperand const & rhs) const = 0;
+		virtual IOperand const * operator-(IOperand const & rhs) const = 0;
+		virtual IOperand const * operator*(IOperand const & rhs) const = 0;
+		virtual IOperand const * operator/(IOperand const & rhs) const = 0;
+		virtual IOperand const * operator%(IOperand const & rhs) const = 0;
 
-	virtual std::string const & toString(void) const = 0;
+		virtual std::string const & toString(void) const = 0;
 
-	virtual ~IOperand(void) {}
+		virtual ~IOperand(void) {}
+		virtual	long double getValue(void) const = 0;
+	private:
+		long double _value;
 };
 
 #endif
