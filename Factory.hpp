@@ -9,7 +9,7 @@
 class Factory {
 	public:
 		Factory();
-		~Factory();
+		~Factory() {}
 		IOperand *createOperand(eOperandType const &type, const std::string & value);
 	private:
 		std::map<eOperandType, IOperand *(Factory::*)(const std::string &)> _tab;

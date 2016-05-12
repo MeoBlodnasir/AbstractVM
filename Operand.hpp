@@ -1,15 +1,12 @@
-#ifndef FLOAT_H_
-# define FLOAT_H_
+#ifndef INT8_H_
+# define INT8_H_
 
 #include "IOperand.hpp"
-#include "Factory.hpp"
 
-
-
-class Float: public IOperand {
+class Operand: public IOperand {
 	public:
-		Float(std::string const &  value);
-		~Float() {}
+		Operand(std::string const &  value, eOperandType type);
+		~Operand() {}
 		IOperand const * operator+(IOperand const & rhs) const ; 
 		IOperand const * operator-(IOperand const & rhs)const ;
 		IOperand const * operator*(IOperand const & rhs)const ;
@@ -21,6 +18,6 @@ class Float: public IOperand {
 		long double getValue(void) const;
 	private:
 		long double _value;
+		eOperandType _type;
 };
-
 #endif

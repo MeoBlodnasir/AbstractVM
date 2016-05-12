@@ -1,12 +1,5 @@
 #include "Factory.hpp"
-#include "Int8.hpp"
-#include "Int16.hpp"
-#include "Int32.hpp"
-#include "Float.hpp"
-#include "Double.hpp"
-
-
-
+#include "Operand.hpp"
 
 Factory::Factory() {
 	_tab[INT8] = &Factory::createInt8;
@@ -21,22 +14,21 @@ IOperand *Factory::createOperand(eOperandType const &type, const std::string & v
 }
 
 IOperand *Factory::createInt8(const std::string & value) {
-	return (new Int8(value));
+	return (new Operand(value, INT8));
 }
 
 IOperand *Factory::createInt16(const std::string & value) {
-	return (new Int16(value));
+	return (new Operand(value, INT16));
 }
 
 IOperand *Factory::createInt32(const std::string & value) {
-	return (new Int32(value));
+	return (new Operand(value, INT32));
 }
 
 IOperand *Factory::createFloat(const std::string & value) {
-	return (new Float(value));
+	return (new Operand(value, FLOAT));
 }
 
 IOperand *Factory::createDouble(const std::string & value) {
-	return (new Double(value));
+	return (new Operand(value, DOUBLE));
 }
-
