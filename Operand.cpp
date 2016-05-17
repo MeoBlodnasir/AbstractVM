@@ -6,7 +6,7 @@
 #include "Exception.hpp"
 #include "Factory.hpp"
 #include <boost/lexical_cast.hpp>
-
+/*
 Operand::Operand(std::string const & value, eOperandType type) {
 	long double val;
 	try { val = std::stold(value, NULL);}
@@ -20,6 +20,17 @@ Operand::Operand(std::string const & value, eOperandType type) {
 	}
 	_value = val;
 	_type = type;
+}
+*/
+
+Operand::Operand(std::string const & value, eOperandType type) {
+	switch (type) {
+		case INT8:
+			try { char v = boost::lexical_cast<char>(value); }
+			catch (const std::exception& e) {
+				throw (Exception("Failed to convert value de Int8\n"));
+			}
+	}
 }
 
 IOperand const * Operand::operator+(IOperand const & rhs) const {
