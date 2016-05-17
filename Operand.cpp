@@ -7,29 +7,57 @@
 #include "Factory.hpp"
 #include <boost/lexical_cast.hpp>
 /*
-Operand::Operand(std::string const & value, eOperandType type) {
-	long double val;
-	try { val = std::stold(value, NULL);}
-	catch (const std::exception& e) { 
-		throw (Exception("Over/Underflow on assignment operation\n"));
-	}
-	if (val > SCHAR_MAX) {
-		throw (Exception("Overflow on creation of Operand\n"));
-	} else if ( val < SCHAR_MIN ) {
-		throw (Exception("Underflow on creation of Operand\n"));
-	}
-	_value = val;
-	_type = type;
-}
-*/
+   Operand::Operand(std::string const & value, eOperandType type) {
+   long double val;
+   try { val = std::stold(value, NULL);}
+   catch (const std::exception& e) { 
+   throw (Exception("Over/Underflow on assignment operation\n"));
+   }
+   if (val > SCHAR_MAX) {
+   throw (Exception("Overflow on creation of Operand\n"));
+   } else if ( val < SCHAR_MIN ) {
+   throw (Exception("Underflow on creation of Operand\n"));
+   }
+   _value = val;
+   _type = type;
+   }
+   */
 
 Operand::Operand(std::string const & value, eOperandType type) {
 	switch (type) {
 		case INT8:
-			try { char v = boost::lexical_cast<char>(value); }
+			try { char v = boost::lexical_cast<int8_t>(value); }
 			catch (const std::exception& e) {
 				throw (Exception("Failed to convert value de Int8\n"));
 			}
+			break ;
+		case INT16:
+			try { char v = boost::lexical_cast<int16_t>(value); }
+			catch (const std::exception& e) {
+				throw (Exception("Failed to convert value de Int16\n"));
+			}
+			break ;
+		case INT32:
+			try { char v = boost::lexical_cast<int32_t>(value); }
+			catch (const std::exception& e) {
+				throw (Exception("Failed to convert value de Int32\n"));
+			}
+			break ;
+		case FLOAT:
+			try { char v = boost::lexical_cast<float>(value); }
+			catch (const std::exception& e) {
+				throw (Exception("Failed to convert value de Float\n"));
+			}
+			break ;
+		case DOUBLE:
+			try { char v = boost::lexical_cast<double>(value); }
+			catch (const std::exception& e) {
+				throw (Exception("Failed to convert value de Double\n"));
+			}
+			break ;
+		default:
+			throw (Exception("Type not recognised\n"));
+			break ;
 	}
 }
 
