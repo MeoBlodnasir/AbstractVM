@@ -5,9 +5,11 @@
 
 class Stack {
 	private:
-		std::list<IOperand*> _stack;
+		std::list<const IOperand*> _stack;
 		Factory _facto;
+		std::map<std::string, void (Stack::*)()> _tab;
 	public:
+		void execute(const std::string& value);
 		Stack();
 		~Stack() {};
 		void	push(const std::string&);

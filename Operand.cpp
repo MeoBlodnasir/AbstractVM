@@ -6,6 +6,7 @@
 #include "Exception.hpp"
 #include "Factory.hpp"
 #include <boost/lexical_cast.hpp>
+#include <boost/numeric/conversion/cast.hpp>
 /*
    Operand::Operand(std::string const & value, eOperandType type) {
    long double val;
@@ -26,33 +27,53 @@
 Operand::Operand(std::string const & value, eOperandType type) {
 	switch (type) {
 		case INT8:
-			try { char v = boost::lexical_cast<int8_t>(value); }
+			try {
+				int8_t v = boost::numeric_cast<int8_t>(boost::lexical_cast<int>(value));
+				_value = boost::numeric_cast<long double>(v);
+				_type = type;
+			}
 			catch (const std::exception& e) {
-				throw (Exception("Failed to convert value de Int8\n"));
+				throw (Exception("Failed to convert value to Int8\n"));
 			}
 			break ;
 		case INT16:
-			try { char v = boost::lexical_cast<int16_t>(value); }
+			try { 
+				int16_t v = boost::lexical_cast<int16_t>(value);
+				_value = boost::lexical_cast<long double>(v);
+				_type = type;
+			}
 			catch (const std::exception& e) {
-				throw (Exception("Failed to convert value de Int16\n"));
+				throw (Exception("Failed to convert value to Int16\n"));
 			}
 			break ;
 		case INT32:
-			try { char v = boost::lexical_cast<int32_t>(value); }
+			try {
+				int32_t v = boost::lexical_cast<int32_t>(value);
+				_value = boost::lexical_cast<long double>(v);
+				_type = type;
+			}
 			catch (const std::exception& e) {
-				throw (Exception("Failed to convert value de Int32\n"));
+				throw (Exception("Failed to convert value to Int32\n"));
 			}
 			break ;
 		case FLOAT:
-			try { char v = boost::lexical_cast<float>(value); }
+			try {
+				float v = boost::lexical_cast<float>(value);
+				_value = boost::lexical_cast<long double>(v);
+				_type = type;
+			}
 			catch (const std::exception& e) {
-				throw (Exception("Failed to convert value de Float\n"));
+				throw (Exception("Failed to convert value to Float\n"));
 			}
 			break ;
 		case DOUBLE:
-			try { char v = boost::lexical_cast<double>(value); }
+			try {
+				double v = boost::lexical_cast<double>(value);
+				_value = boost::lexical_cast<long double>(v);
+				_type = type;
+			}
 			catch (const std::exception& e) {
-				throw (Exception("Failed to convert value de Double\n"));
+				throw (Exception("Failed to convert value to Double\n"));
 			}
 			break ;
 		default:
@@ -120,7 +141,7 @@ IOperand const * Operand::operator%(IOperand const & rhs) const {
 	std::stringstream stream;
 	int a;
 	int b;
-	if (rhs.getValue() == 0) { throw (Exception("Division by 0\n")); }
+	if (rhs.getValue() == 0) { throw (Exception("Modulus by 0\n")); }
 	try {
 		a = boost::lexical_cast<int>(this->getValue());
 		b = boost::lexical_cast<int>(this->getValue());
