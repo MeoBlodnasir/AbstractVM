@@ -7,22 +7,20 @@
 #include "Factory.hpp"
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-/*
-   Operand::Operand(std::string const & value, eOperandType type) {
-   long double val;
-   try { val = std::stold(value, NULL);}
-   catch (const std::exception& e) { 
-   throw (Exception("Over/Underflow on assignment operation\n"));
-   }
-   if (val > SCHAR_MAX) {
-   throw (Exception("Overflow on creation of Operand\n"));
-   } else if ( val < SCHAR_MIN ) {
-   throw (Exception("Underflow on creation of Operand\n"));
-   }
-   _value = val;
-   _type = type;
-   }
-   */
+
+Operand::~Operand() {
+}
+
+Operand::Operand(const Operand & src) {
+	*this = src;
+	return ;
+}
+
+Operand & Operand::operator=(const Operand & rhs) {
+	this->_value = rhs.getValue();
+	this->_type = rhs.getType();
+	return *this;
+}
 
 Operand::Operand(std::string const & value, eOperandType type) {
 	switch (type) {

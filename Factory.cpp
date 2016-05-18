@@ -10,7 +10,7 @@ Factory::Factory() {
 }
 
 IOperand *Factory::createOperand(eOperandType const &type, const std::string & value) {
-	(this->*_tab[type])(value);
+	return	(this->*_tab[type])(value);
 }
 
 IOperand *Factory::createInt8(const std::string & value) {

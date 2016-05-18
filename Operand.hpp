@@ -6,7 +6,9 @@
 class Operand: public IOperand {
 	public:
 		Operand(std::string const &  value, eOperandType type);
-		~Operand() {}
+		virtual ~Operand(); 
+		Operand(const Operand & src);
+		Operand & operator=(const Operand & rhs);
 		IOperand const * operator+(IOperand const & rhs) const ; 
 		IOperand const * operator-(IOperand const & rhs)const ;
 		IOperand const * operator*(IOperand const & rhs)const ;

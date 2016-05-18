@@ -57,20 +57,22 @@ int main(int ac, char **av) {
 			if (file.is_open()) {
 				while (getline(file, line)) {
 					boost::trim(line);
-					if (line == "exit")
-						break ;
+					if (line == "exit") {
+						file.close();
+						return 0;
+					}
 					handle_instruction(line, stack);
 				}
-				file.close();
 			} else {
 				std::cout << "Unable to opem file" << std::endl;
 			}
+			throw(Exception("No exit instruction"));
 		}
 
 	}
 
 	catch(Exception const &error) {
-		std::cerr << "Caught error: " << error.what() << std::endl;
+		std::cerr << "error: " << error.what() << std::endl;
 
 	} catch (const std::exception& e) {
 		std::cout << e.what() << std::endl;

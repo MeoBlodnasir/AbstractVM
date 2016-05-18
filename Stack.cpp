@@ -14,6 +14,19 @@ Stack::Stack() {
 	_tab["print"] = &Stack::print;
 }
 
+Stack::~Stack() {
+}
+
+Stack::Stack(const Stack & src) {
+	*this = src;
+	return ;
+}
+
+Stack & Stack::operator=(const Stack & rhs) {
+	(void)rhs;
+	return *this;
+}
+
 std::string get_value(std::string str) {
 	std::string number;
 	number = str.substr(str.find("(") + 1, str.find(")") - str.find("(") - 1);
@@ -150,12 +163,16 @@ void	Stack::dump(void) {
 	}
 }
 void	Stack::print(void) {
-	int8_t v;
-	try { 	
-		v = boost::numeric_cast<int8_t>(boost::lexical_cast<int>(_stack.front()->getValue()));
-	} catch (const std::exception& e) {
-		throw(Exception("Element on the top of the stakc is not an Int8"));
+	/*
+	   int8_t v;
+	   try { 	
+	   v = boost::numeric_cast<int8_t>(boost::lexical_cast<int>(_stack.front()->getValue()));
+	   } catch (const std::exception& e) {
+	   throw(Exception("Element on the top of the stakc is not an Int8"));
 
+	   }*/
+	if (_stack.front()->getValue() < 0) {
+		throw (Exception("Error while converting value to char"));
 	}
 	char c;
 	try { c = boost::numeric_cast<char>(_stack.front()->getValue()); }

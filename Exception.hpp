@@ -5,12 +5,13 @@
 
 class Exception : public std::exception
 {
- private:
-  std::string	_msg;
- public:
-  Exception(std::string const &msg) throw();
-  virtual ~Exception() throw();
-  virtual const char *what() const throw();
+	private:
+		std::string	_msg;
+	public:
+		Exception(std::string const &msg) throw();
+		virtual ~Exception() throw();
+		virtual const char *what() const throw();
+		Exception& operator=(const Exception& rhs);
 };
 
 #endif

@@ -14,3 +14,8 @@ const char	*Exception::what() const throw()
 {
   return (this->_msg.c_str());
 }
+
+Exception& Exception::operator=(const Exception& rhs) {
+	(void)rhs;
+	return *this;
+}

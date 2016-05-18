@@ -1,3 +1,5 @@
+#ifndef STACK_HPP_
+# define STACK_HPP_
 #include <iostream>
 #include <list>
 #include "IOperand.hpp"
@@ -11,7 +13,9 @@ class Stack {
 	public:
 		void execute(const std::string& value);
 		Stack();
-		~Stack() {};
+		Stack(const Stack & src);
+		Stack & operator=(const Stack & rhs);
+		virtual ~Stack();
 		void	push(const std::string&);
 		void	ass(const std::string&);
 		void 	add(void);
@@ -24,3 +28,5 @@ class Stack {
 		void 	print(void);
 
 };
+
+#endif
