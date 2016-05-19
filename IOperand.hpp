@@ -27,8 +27,6 @@ class IOperand {
 
 		virtual ~IOperand(void) {}
 		virtual	long double getValue(void) const = 0;
-	private:
-		long double _value;
 };
 
 #endif
