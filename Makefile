@@ -10,31 +10,22 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = computor
+NAME = abstractvm
 
-SRC = comp.c\
-	  utils.c \
-	  simplify.c \
-	  init.c \
-	  display.c \
+SRC = main.cpp\
+	  Exception.cpp \
+	  Factory.cpp \
+	  Operand.cpp \
+	  Stack.cpp \
 
-.PHONY: libft.a
 
-OBJ = $(SRC:.c=.o)
+all :  $(NAME)
 
-all : libft.a $(NAME)
-
-libft.a:
-		@$(MAKE) -C ./libft
-
-$(NAME) : $(OBJ)
-		@gcc -Wall -Werror -Wextra -o $(NAME) $(OBJ) -L./libft/ -lftprintf -I ./libft
-
-%.o: %.c
-		@gcc -Wall -Werror -Wextra -I./libft/ -o $@ -c $^
+$(NAME) :
+		@g++ -Wall -Werror -Wextra -o $(NAME) -std=c++11 *.cpp -lboost_regex
 
 clean :
-		rm -f $(OBJ)
+		rm -f $(NAME)
 
 fclean : clean
 		rm -f $(NAME)
