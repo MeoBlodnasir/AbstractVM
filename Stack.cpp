@@ -163,19 +163,14 @@ void	Stack::dump(void) {
 	}
 }
 void	Stack::print(void) {
-	/*
-	   int8_t v;
-	   try { 	
-	   v = boost::numeric_cast<int8_t>(boost::lexical_cast<int>(_stack.front()->getValue()));
-	   } catch (const std::exception& e) {
-	   throw(Exception("Element on the top of the stakc is not an Int8"));
-
-	   }*/
 	if (_stack.front()->getValue() < 0) {
 		throw (Exception("Error while converting value to char"));
 	}
 	char c;
-	try { c = boost::numeric_cast<char>(_stack.front()->getValue()); }
+	int8_t t;
+	try { t = boost::lexical_cast<int8_t>(_stack.front()->getValue());
+		c = boost::lexical_cast<char>(t);
+	}
 	catch (const std::exception & e) {
 		throw (Exception("Error while converting value to char"));
 	}
