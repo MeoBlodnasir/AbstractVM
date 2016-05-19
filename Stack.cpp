@@ -166,13 +166,14 @@ void	Stack::print(void) {
 	if (_stack.front()->getValue() < 0) {
 		throw (Exception("Error while converting value to char"));
 	}
-	char c;
+		if (floor(_stack.front()->getValue()) != _stack.front()->getValue()) {
+		throw (Exception("Error while converting value to char"));
+		}
 	int8_t t;
-	try { t = boost::lexical_cast<int8_t>(_stack.front()->getValue());
-		c = boost::lexical_cast<char>(t);
+	try { t = boost::numeric_cast<int8_t>(_stack.front()->getValue());
 	}
 	catch (const std::exception & e) {
 		throw (Exception("Error while converting value to char"));
 	}
-	std::cout << c << std::endl;
+	std::cout << t << std::endl;
 }
