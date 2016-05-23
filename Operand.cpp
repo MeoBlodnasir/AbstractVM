@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Operand.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aduban <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/19 17:57:41 by aduban            #+#    #+#             */
+/*   Updated: 2016/05/19 17:57:42 by aduban           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Operand.hpp"
 #include <string>
 #include <iostream>
@@ -9,6 +21,9 @@
 #include <boost/numeric/conversion/cast.hpp>
 
 Operand::~Operand() {
+}
+
+Operand::Operand() {
 }
 
 Operand::Operand(const Operand & src) {

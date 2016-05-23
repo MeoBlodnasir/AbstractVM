@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Stack.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aduban <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/19 17:58:30 by aduban            #+#    #+#             */
+/*   Updated: 2016/05/20 15:31:57 by aduban           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Stack.hpp"
 #include <boost/lexical_cast.hpp>
 #include "Exception.hpp"
@@ -77,8 +89,8 @@ void	Stack::ass(const std::string &str) {
 				delete io;
 				return ;
 			} else {
-				std::cout << io->getType() << " VS " << _stack.front()->getType() << std::endl; 
-				std::cout << io->getValue() << " VS " << _stack.front()->getValue() << std::endl; 
+			//	std::cout << io->getType() << " VS " << _stack.front()->getType() << std::endl; 
+			//	std::cout << io->getValue() << " VS " << _stack.front()->getValue() << std::endl; 
 				delete io;
 				throw(Exception("Assert failed."));
 			}
@@ -163,6 +175,9 @@ void	Stack::dump(void) {
 	}
 }
 void	Stack::print(void) {
+	if (_stack.size() == 0) {
+		throw (Exception("empty stack"));
+	}
 	if (_stack.front()->getValue() < 0) {
 		throw (Exception("Error while converting value to char"));
 	}

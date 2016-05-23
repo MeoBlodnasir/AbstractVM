@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aduban <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/19 17:58:40 by aduban            #+#    #+#             */
+/*   Updated: 2016/05/20 15:30:34 by aduban           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "IOperand.hpp"
 #include "Operand.hpp"
 #include "Exception.hpp"
@@ -21,7 +33,7 @@ void	handle_push_assert(const std::vector<std::string> &strs, Stack &stack) {
 }
 
 void	handle_instruction(std::string &msg, Stack &stack) {
-	msg = msg.substr(0, msg.find(";") -1);
+	msg = msg.substr(0, msg.find(";"));
 	std::vector<std::string> strs;
 	boost::split(strs,msg,boost::is_any_of(" "));
 	if (msg[0] == ';') {
