@@ -6,7 +6,7 @@
 /*   By: aduban <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/19 17:57:41 by aduban            #+#    #+#             */
-/*   Updated: 2016/05/19 17:57:42 by aduban           ###   ########.fr       */
+/*   Updated: 2016/10/10 18:47:00 by aduban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ Operand::Operand(std::string const & value, eOperandType type) {
 				_type = type;
 			}
 			catch (const std::exception& e) {
+				std::cout << e.what() << std::endl;
 				throw (Exception("Failed to convert value to Int32\n"));
 			}
 			break ;
@@ -95,6 +96,22 @@ Operand::Operand(std::string const & value, eOperandType type) {
 	}
 }
 
+static std::string transformValue(std::string str, int type) {
+	size_t found;
+	switch (type) {
+		case INT8:
+		case INT16:
+		case INT32:
+			found = (str.substr(str.find(".")+1, str.size() - str.find("."))).find_first_of("123456789");
+			if (found == std::string::npos)
+				str = str.substr(0, str.find("."));
+			break;
+		default:
+			break;
+	}
+	return str;
+}
+
 IOperand const * Operand::operator+(IOperand const & rhs) const {
 	long double res;
 	Factory f;
@@ -104,8 +121,8 @@ IOperand const * Operand::operator+(IOperand const & rhs) const {
 		throw (Exception("Over/Underflow on ADD operation\n"));
 	}
 	int type = this->getType() < rhs.getType() ? rhs.getType() : this->getType();
-	stream << res;
-	return f.createOperand((eOperandType)type, stream.str()); 
+	stream <<  res;
+	return f.createOperand((eOperandType)type, transformValue(std::to_string(res), type)); 
 }
 
 IOperand const * Operand::operator-(IOperand const & rhs) const {
@@ -118,7 +135,7 @@ IOperand const * Operand::operator-(IOperand const & rhs) const {
 	}
 	int type = this->getType() < rhs.getType() ? rhs.getType() : this->getType();
 	stream << res;
-	return f.createOperand((eOperandType)type, stream.str()); 
+	return f.createOperand((eOperandType)type, transformValue(std::to_string(res), type)); 
 }
 
 IOperand const * Operand::operator*(IOperand const & rhs) const{
@@ -131,7 +148,7 @@ IOperand const * Operand::operator*(IOperand const & rhs) const{
 	}
 	int type = this->getType() < rhs.getType() ? rhs.getType() : this->getType();
 	stream << res;
-	return f.createOperand((eOperandType)type, stream.str()); 
+	return f.createOperand((eOperandType)type, transformValue(std::to_string(res), type)); 
 }
 
 IOperand const * Operand::operator/(IOperand const & rhs) const {
@@ -145,7 +162,7 @@ IOperand const * Operand::operator/(IOperand const & rhs) const {
 	}
 	int type = this->getType() < rhs.getType() ? rhs.getType() : this->getType();
 	stream << res;
-	return f.createOperand((eOperandType)type, stream.str()); 
+	return f.createOperand((eOperandType)type, transformValue(std::to_string(res), type)); 
 }
 
 IOperand const * Operand::operator%(IOperand const & rhs) const {
@@ -168,7 +185,7 @@ IOperand const * Operand::operator%(IOperand const & rhs) const {
 	}
 	int type = this->getType() < rhs.getType() ? rhs.getType() : this->getType();
 	stream << res;
-	return f.createOperand((eOperandType)type, stream.str()); 
+	return f.createOperand((eOperandType)type, transformValue(std::to_string(res), type)); 
 }
 
 int 		Operand::getPrecision(void) const {
